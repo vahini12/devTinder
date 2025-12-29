@@ -5,15 +5,15 @@ const app = express()
 
 
 app.get('/user',(req,res)=>{
+    console.log("passing params through url", req.query)
     res.send({firstname :"Vahini", lastname : "Manku"})
 })
 
-app.post('/user',(req,res)=>{
-    res.send("USer is saved successfully")
+app.get('/user/:userId/:email',(req,res)=>{
+    console.log("passing params dynamically", req.params)
+    res.send({firstname :"Vahini", lastname : "Manku"})
 })
-app.delete('/user',(req,res)=>{
-    res.send("User is deleted successfully")
-})
+
 
 app.listen(3000, ()=>{
     console.log("server is running successfully on port 3000")
