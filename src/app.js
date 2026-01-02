@@ -1,18 +1,38 @@
 const express = require("express");
+const { adminAuth ,userAuth} = require("./middlewares/auth");
 const app = express()
 
 
 
 
-app.get('/user',(req,res)=>{
-    console.log("passing params through url", req.query)
-    res.send({firstname :"Vahini", lastname : "Manku"})
-})
+app.use("/admin",adminAuth)
 
-app.get('/user/:userId/:email',(req,res)=>{
-    console.log("passing params dynamically", req.params)
-    res.send({firstname :"Vahini", lastname : "Manku"})
-})
+
+app.get("/admin/getAllData",(req,res)=>{
+   
+    res.send("Sent Data successfully")
+    
+ })
+
+ 
+app.get("/admin/deleteData",(req,res)=>{
+
+    res.send("data deleted successfully")
+    
+ })
+
+ app.get("/user/login", (req,res)=>{
+
+    res.send("user logged  successfully")
+    
+ })
+ 
+ app.get("/user",userAuth, (req,res)=>{
+
+    res.send("user data send  successfully")
+    
+ })
+
 
 
 app.listen(3000, ()=>{
